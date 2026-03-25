@@ -6,6 +6,6 @@ export const auth = {
   clearToken: () => localStorage.removeItem(TOKEN_KEY),
   getHeaders: () => {
     const token = localStorage.getItem(TOKEN_KEY);
-    return token ? { authorization: token } : {};
+    return token ? { authorization: `Bearer ${token}` } : {};
   }
 };
