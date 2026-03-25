@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "SecureVision - Security Camera Business"
+version = "1.0.0"
+id = "artifacts/security-camera-site"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22837
+
+[services.development]
+run = "pnpm --filter @workspace/security-camera-site run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/security-camera-site", "run", "build" ]
+publicDir = "artifacts/security-camera-site/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22837"
+BASE_PATH = "/"

@@ -1,0 +1,153 @@
+Build a modern, professional, and fully responsive website for a security camera business.
+
+The website should feel premium, trustworthy, and tech-focused, similar to brands in the security and smart home industry.
+
+### 🧱 Tech Stack
+
+* Frontend: React + Tailwind CSS
+* Backend: Node.js (Express)
+* Database: PostgreSQL (or simple JSON storage if needed)
+* Use clean architecture and scalable structure
+
+---
+
+### 🎯 Main Goal
+
+Create a website where users can:
+
+* Browse security cameras
+* View product details
+* Request installation
+* Contact the business
+
+---
+
+### 🎨 Design Style
+
+* Dark theme (black / dark gray / blue accents)
+* Minimal, modern UI
+* Smooth animations (hover effects, transitions)
+* Professional fonts
+* Use icons for security, cameras, protection
+
+---
+
+### 📄 Pages Required
+
+#### 1. Home Page
+
+* Hero section with headline:
+  "Protect What Matters Most"
+* Subtext about security solutions
+* CTA buttons: "View Products" and "Get Installation"
+* Section with features:
+
+  * 24/7 Monitoring
+  * HD Cameras
+  * Remote Access
+* Testimonials section
+* Footer with contact info
+
+---
+
+#### 2. Products Page
+
+* Grid layout of security cameras
+* Each product card includes:
+
+  * Image
+  * Name
+  * Price
+  * Short description
+  * "View Details" button
+
+---
+
+#### 3. Product Details Page
+
+* Large product image
+* Full description
+* Features list
+* Price
+* Button: "Request Installation" or "Contact Us"
+
+---
+
+#### 4. Services Page
+
+* Installation services
+* Maintenance services
+* Business & home solutions
+* Pricing or "Request Quote"
+
+---
+
+#### 5. Contact Page
+
+* Contact form:
+
+  * Name
+  * Phone
+  * Email
+  * Message
+* Google Maps integration
+* Business info (phone, email, address)
+
+---
+
+### ⚙️ Features
+
+* Fully responsive (mobile + desktop)
+* Fast loading
+* SEO-friendly structure
+* Clean reusable components
+* Navigation bar with logo + menu
+* Footer with links and social media
+
+---
+
+### 🔐 Extra Features (Important)
+
+* Admin panel (simple):
+
+  * Add/Edit/Delete products
+* Store product data in database
+* Basic authentication for admin
+
+---
+
+### 📦 Bonus (if possible)
+
+* Add WhatsApp contact button
+* Add "Call Now" button for mobile users
+* Add light animations (Framer Motion)
+
+---
+
+### 🧪 Data
+
+Preload with example products like:
+
+* Outdoor Security Camera
+* Indoor Smart Camera
+* Night Vision Camera
+* Wireless Camera System
+
+---
+
+### 🧼 Code Quality
+
+* Clean, well-structured code
+* Use reusable components
+* Comment important parts
+* Follow best practices
+
+---
+
+### 🚀 Final Output
+
+* Fully working website
+* Easy to deploy
+* Clear instructions to run locally
+
+Make everything look like a real, premium business website ready for customers.

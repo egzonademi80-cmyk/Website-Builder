@@ -1,0 +1,21 @@
+packages:
+  "framer-motion": "Animations and page transitions for premium feel"
+  "react-hook-form": "Form state management"
+  "@hookform/resolvers": "Zod validation for forms"
+  "zod": "Schema validation"
+  "clsx": "Class merging utility"
+  "tailwind-merge": "Class merging utility"
+
+images:
+  - path: "artifacts/security-camera-site/public/images/hero-bg.png"
+    description: "Dark, moody abstract background with glowing cyan and blue digital nodes, soft light leaks, and subtle tech grid patterns. High-end cybersecurity and tech aesthetic."
+    aspect_ratio: "16:9"
+  - path: "artifacts/security-camera-site/public/images/logo.png"
+    description: "Minimalist modern logo featuring a stylized glowing cyan eye integrated into a shield on a transparent background, sleek tech aesthetic."
+    aspect_ratio: "1:1"
+  - path: "artifacts/security-camera-site/public/images/services-bg.png"
+    description: "Dark high-tech server room with glowing blue LED lights, depth of field, sophisticated and secure atmosphere."
+    aspect_ratio: "16:9"
+
+notes:
+  - API endpoints are pre-generated. Admin requests require 'authorization' header with token.
