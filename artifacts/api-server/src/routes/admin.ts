@@ -3,9 +3,9 @@ import { AdminLoginBody } from "@workspace/api-zod";
 
 const router: IRouter = Router();
 
-const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "securevision2024";
-const ADMIN_TOKEN = "sv_admin_token_securevision2024";
+const ADMIN_USERNAME = "shkodran";
+const ADMIN_PASSWORD = "shkodran";
+const ADMIN_TOKEN = "sv_admin_token_shkodran";
 
 // POST /admin/login - admin login
 router.post("/login", (req, res) => {
