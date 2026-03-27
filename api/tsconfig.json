@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../dist-api",
+    "rootDir": "."
+  },
+  "references": [
+    { "path": "../artifacts/api-server" }
+  ]
+}

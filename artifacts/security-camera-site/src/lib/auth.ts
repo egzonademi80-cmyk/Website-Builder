@@ -1,4 +1,4 @@
-const TOKEN_KEY = "securevision_token";
+const TOKEN_KEY = "swisscam_token";
 
 export const auth = {
   getToken: () => localStorage.getItem(TOKEN_KEY),

@@ -12,7 +12,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2">
               <ShieldCheck className="w-8 h-8 text-primary" />
               <span className="font-display font-bold text-2xl tracking-tight text-foreground">
-                Secure<span className="text-primary">Vision</span>
+                SwissCam<span className="text-primary"> Security</span>
               </span>
             </Link>
             <p className="text-muted-foreground leading-relaxed">
@@ -61,7 +61,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 text-muted-foreground">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <span>contact@securevision.com</span>
+                <span>contact@swisscamsecurity.com</span>
               </li>
             </ul>
           </div>
@@ -69,7 +69,7 @@ export function Footer() {
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} SecureVision. All rights reserved.
+            © {new Date().getFullYear()} SwissCam Security. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>

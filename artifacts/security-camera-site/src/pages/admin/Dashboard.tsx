@@ -17,7 +17,7 @@ export default function AdminDashboard() {
     <AdminLayout>
       <div className="mb-8">
         <h1 className="text-3xl font-display font-bold">Dashboard Overview</h1>
-        <p className="text-muted-foreground mt-2">Welcome back to the SecureVision admin panel.</p>
+        <p className="text-muted-foreground mt-2">Welcome back to the SwissCam Security admin panel.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

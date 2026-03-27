@@ -30,7 +30,7 @@ const testimonials = [
   {
     name: "Sarah Jenkins",
     role: "Small Business Owner",
-    text: "SecureVision transformed how I manage my retail store. The clarity of the cameras and the ease of the mobile app are unmatched. Highly recommended!"
+    text: "SwissCam Security transformed how I manage my retail store. The clarity of the cameras and the ease of the mobile app are unmatched. Highly recommended!"
   },
   {
     name: "Michael Chen",
@@ -40,7 +40,7 @@ const testimonials = [
   {
     name: "David Rodriguez",
     role: "Warehouse Manager",
-    text: "We upgraded our entire facility to SecureVision's 4K system. The AI motion detection has saved us countless hours reviewing footage."
+    text: "We upgraded our entire facility to SwissCam Security's 4K system. The AI motion detection has saved us countless hours reviewing footage."
   }
 ];
 
@@ -116,7 +116,7 @@ export default function Home() {
       <section className="py-24 bg-card/50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Why Choose SecureVision?</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Why Choose SwissCam Security?</h2>
             <p className="text-muted-foreground text-lg">We combine cutting-edge technology with reliable performance to deliver security solutions you can trust.</p>
           </div>
           
@@ -164,7 +164,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Trusted by Thousands</h2>
-            <p className="text-muted-foreground text-lg">Don't just take our word for it. Here's what our customers have to say about their SecureVision experience.</p>
+            <p className="text-muted-foreground text-lg">Don't just take our word for it. Here's what our customers have to say about their SwissCam Security experience.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

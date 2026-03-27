@@ -38,7 +38,7 @@ export function Navbar() {
               <ShieldCheck className="w-6 h-6" />
             </div>
             <span className="font-display font-bold text-xl tracking-tight text-foreground">
-              Secure<span className="text-primary">Vision</span>
+              SwissCam<span className="text-primary"> Security</span>
             </span>
           </Link>
 

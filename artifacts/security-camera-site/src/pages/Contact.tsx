@@ -85,7 +85,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                      <p className="text-muted-foreground">sales@securevision.com<br/>support@securevision.com</p>
+                      <p className="text-muted-foreground">sales@swisscamsecurity.com<br/>support@swisscamsecurity.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">

@@ -37,9 +37,22 @@ artifacts-monorepo/
 └── package.json            # Root package with hoisted devDeps
 ```
 
-## Security Camera Website
+## SwissCam Security Website
 
 The main application is a full-stack security camera business website at `artifacts/security-camera-site`.
+
+## Database
+
+- **Development/Production**: Neon PostgreSQL (`NEON_DATABASE_URL` env var)
+- DB config reads `NEON_DATABASE_URL` first, falls back to `DATABASE_URL`
+- Run migrations: `NEON_DATABASE_URL=<url> pnpm --filter @workspace/db run push`
+
+## Vercel Deployment
+
+- `vercel.json` at the root configures the deployment
+- Frontend: built statically from `artifacts/security-camera-site`
+- API: `api/index.ts` is deployed as a Vercel serverless function
+- Required env var in Vercel dashboard: `NEON_DATABASE_URL`
 
 ### Pages
 - **Home** (`/`) - Hero section, features, testimonials
