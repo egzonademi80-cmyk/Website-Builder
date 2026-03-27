@@ -1,17 +1,25 @@
 import { Router, type IRouter } from "express";
 import { db, blogPostsTable } from "@workspace/db";
 import { eq } from "drizzle-orm";
-import {
-  CreateBlogPostBody,
-  GetBlogPostParams,
-  UpdateBlogPostParams,
-  UpdateBlogPostBody,
-  DeleteBlogPostParams,
-} from "@workspace/api-zod";
+import { z } from "zod";
+
+const CreateBlogPostBody = z.object({
+  title: z.string().min(1),
+  slug: z.string().min(1),
+  excerpt: z.string().min(1),
+  content: z.string().min(1),
+  imageUrl: z.string().min(1),
+  author: z.string().min(1),
+  category: z.string().min(1),
+  published: z.boolean().optional().default(true),
+});
+
+const UpdateBlogPostParams = z.object({ id: z.number().int().positive() });
+const UpdateBlogPostBody = CreateBlogPostBody.partial();
+const DeleteBlogPostParams = z.object({ id: z.number().int().positive() });
 
 const router: IRouter = Router();
 
-// GET /blog - list all published posts
 router.get("/", async (req, res) => {
   try {
     const posts = await db
@@ -26,7 +34,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// POST /blog - create a post (admin)
 router.post("/", async (req, res) => {
   try {
     const body = CreateBlogPostBody.parse(req.body);
@@ -38,7 +45,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// PUT /blog/id/:id - update a post (admin) — must be BEFORE the slug route
 router.put("/id/:id", async (req, res) => {
   try {
     const params = UpdateBlogPostParams.parse({ id: parseInt(req.params.id) });
@@ -59,7 +65,6 @@ router.put("/id/:id", async (req, res) => {
   }
 });
 
-// DELETE /blog/id/:id - delete a post (admin)
 router.delete("/id/:id", async (req, res) => {
   try {
     const params = DeleteBlogPostParams.parse({ id: parseInt(req.params.id) });
@@ -78,7 +83,6 @@ router.delete("/id/:id", async (req, res) => {
   }
 });
 
-// GET /blog/:slug - get single post by slug
 router.get("/:slug", async (req, res) => {
   try {
     const [post] = await db

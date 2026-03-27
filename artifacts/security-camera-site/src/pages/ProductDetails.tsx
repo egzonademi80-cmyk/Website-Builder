@@ -8,9 +8,7 @@ export default function ProductDetails() {
   const [, params] = useRoute("/products/:id");
   const productId = parseInt(params?.id || "0");
   
-  const { data: product, isLoading, error } = useGetProduct(productId, {
-    query: { enabled: productId > 0 }
-  });
+  const { data: product, isLoading, error } = useGetProduct(productId);
 
   if (isLoading) {
     return (

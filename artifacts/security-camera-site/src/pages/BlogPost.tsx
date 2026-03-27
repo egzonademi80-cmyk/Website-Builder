@@ -1,5 +1,5 @@
 import { useRoute, Link } from "wouter";
-import { useGetBlogPost } from "@workspace/api-client-react";
+import { useGetBlogPost } from "@/hooks/useBlogApi";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Loader2, ArrowLeft, Calendar, User } from "lucide-react";
 import { format } from "date-fns";
@@ -8,9 +8,7 @@ export default function BlogPost() {
   const [, params] = useRoute("/blog/:slug");
   const slug = params?.slug || "";
 
-  const { data: post, isLoading, error } = useGetBlogPost(slug, {
-    query: { enabled: !!slug, queryKey: ["blog", slug] }
-  });
+  const { data: post, isLoading, error } = useGetBlogPost(slug);
 
   if (isLoading) {
     return (

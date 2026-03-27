@@ -1,7 +1,7 @@
 {
   "version": 2,
   "installCommand": "pnpm install --frozen-lockfile=false",
-  "buildCommand": "pnpm --filter @workspace/security-camera-site run build",
+  "buildCommand": "PORT=3000 BASE_PATH=/ pnpm --filter @workspace/security-camera-site run build",
   "outputDirectory": "artifacts/security-camera-site/dist/public",
   "framework": null,
   "functions": {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { useListBlogPosts } from "@workspace/api-client-react";
+import { useListBlogPosts } from "@/hooks/useBlogApi";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Loader2, ArrowRight, Calendar, User } from "lucide-react";
 import { format } from "date-fns";

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { AdminLayout } from "./AdminLayout";
-import { useListBlogPosts, useCreateBlogPost, useUpdateBlogPost, useDeleteBlogPost, getListBlogPostsQueryKey } from "@workspace/api-client-react";
+import { useListBlogPosts, useCreateBlogPost, useUpdateBlogPost, useDeleteBlogPost, getListBlogPostsQueryKey, type BlogPost } from "@/hooks/useBlogApi";
 import { auth } from "@/lib/auth";
-import { Plus, Edit2, Trash2, Loader2, Image as ImageIcon } from "lucide-react";
+import { Plus, Edit2, Trash2, Loader2 } from "lucide-react";
 import { Modal } from "@/components/ui/Modal";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,9 +28,9 @@ export default function ManageBlog() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
 
-  const { data: posts, isLoading } = useListBlogPosts({ request: { headers: auth.getHeaders() } });
+  const { data: posts, isLoading } = useListBlogPosts();
 
   const { mutate: createPost, isPending: isCreating } = useCreateBlogPost({
     mutation: {
@@ -61,7 +61,7 @@ export default function ManageBlog() {
     }
   });
 
-  const { register, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm<BlogFormData>({
+  const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm<BlogFormData>({
     resolver: zodResolver(blogSchema),
     defaultValues: { published: true, category: "Security News" }
   });
@@ -69,23 +69,23 @@ export default function ManageBlog() {
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setValue("title", val);
-    if (!editingId) {
+    if (!editingPost) {
       setValue("slug", val.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''));
     }
   };
 
   const openAddModal = () => {
-    setEditingId(null);
+    setEditingPost(null);
     reset({
-      title: "", slug: "", excerpt: "", content: "", 
-      imageUrl: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800", 
+      title: "", slug: "", excerpt: "", content: "",
+      imageUrl: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800",
       author: "Admin", category: "Security News", published: true
     });
     setIsModalOpen(true);
   };
 
-  const openEditModal = (post: any) => {
-    setEditingId(post.id);
+  const openEditModal = (post: BlogPost) => {
+    setEditingPost(post);
     reset({ ...post });
     setIsModalOpen(true);
   };
@@ -96,16 +96,17 @@ export default function ManageBlog() {
   };
 
   const onSubmit = (data: BlogFormData) => {
-    if (editingId) {
-      updatePost({ slug: data.slug, data: data as any }); // The route is likely /api/blog/:slug based on getGetBlogPost, let's pass slug
+    const headers = auth.getHeaders();
+    if (editingPost) {
+      updatePost({ id: editingPost.id, data, headers });
     } else {
-      createPost({ data: data as any });
+      createPost({ data, headers });
     }
   };
 
-  const handleDelete = (slug: string) => {
+  const handleDelete = (post: BlogPost) => {
     if (confirm("Are you sure you want to delete this post?")) {
-      deletePost({ slug });
+      deletePost({ id: post.id, headers: auth.getHeaders() });
     }
   };
 
@@ -116,7 +117,7 @@ export default function ManageBlog() {
           <h1 className="text-3xl font-display font-bold">Manage Blog</h1>
           <p className="text-muted-foreground mt-2">Create and edit articles and news.</p>
         </div>
-        <button 
+        <button
           onClick={openAddModal}
           className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
         >
@@ -159,7 +160,7 @@ export default function ManageBlog() {
                       <button onClick={() => openEditModal(p)} className="p-2 hover:bg-white/10 rounded-lg text-blue-400 transition-colors" title="Edit">
                         <Edit2 className="w-4 h-4" />
                       </button>
-                      <button onClick={() => handleDelete(p.slug)} className="p-2 hover:bg-destructive/20 rounded-lg text-destructive transition-colors" title="Delete">
+                      <button onClick={() => handleDelete(p)} className="p-2 hover:bg-destructive/20 rounded-lg text-destructive transition-colors" title="Delete">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
@@ -171,10 +172,10 @@ export default function ManageBlog() {
         </div>
       </div>
 
-      <Modal 
-        isOpen={isModalOpen} 
-        onClose={closeModal} 
-        title={editingId ? "Edit Post" : "Create New Post"}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title={editingPost ? "Edit Post" : "Create New Post"}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -233,7 +234,7 @@ export default function ManageBlog() {
             <button type="button" onClick={closeModal} className="px-6 py-2.5 rounded-xl border border-white/10 hover:bg-white/5 font-medium transition-colors">Cancel</button>
             <button type="submit" disabled={isCreating || isUpdating} className="px-6 py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors flex items-center gap-2">
               {(isCreating || isUpdating) && <Loader2 className="w-4 h-4 animate-spin" />}
-              {editingId ? "Save Changes" : "Create Post"}
+              {editingPost ? "Save Changes" : "Create Post"}
             </button>
           </div>
         </form>
