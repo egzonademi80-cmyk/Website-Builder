@@ -1,10 +1,14 @@
 {
-  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "../dist-api",
-    "rootDir": "."
+    "target": "es2022",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["es2022"],
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true
   },
-  "references": [
-    { "path": "../artifacts/api-server" }
-  ]
+  "include": ["index.ts"]
 }
