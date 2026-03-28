@@ -8,14 +8,23 @@ import { formatPrice } from "@/lib/utils";
 export default function Products() {
   const { data: products, isLoading, error } = useListProducts();
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState("Alle");
 
-  const categories = ["All", "Outdoor Security Camera", "Indoor Smart Camera", "Night Vision Camera", "Wireless Camera System"];
+  const categoryMap: Record<string, string> = {
+    "Alle": "All",
+    "Aussenkamera": "Outdoor Security Camera",
+    "Innenkamera": "Indoor Smart Camera",
+    "Nachtsichtkamera": "Night Vision Camera",
+    "Drahtloses System": "Wireless Camera System",
+  };
+
+  const categories = Object.keys(categoryMap);
 
   const filteredProducts = products?.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase()) || 
                           p.shortDescription.toLowerCase().includes(search.toLowerCase());
-    const matchesCategory = category === "All" || p.category === category;
+    const selectedEnglish = categoryMap[category] ?? category;
+    const matchesCategory = category === "Alle" || p.category === selectedEnglish;
     return matchesSearch && matchesCategory;
   });
 
@@ -25,8 +34,8 @@ export default function Products() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="mb-16">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Our <span className="text-gradient">Products</span></h1>
-            <p className="text-xl text-muted-foreground max-w-2xl">Browse our professional range of security cameras designed for maximum reliability and clarity.</p>
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Unsere <span className="text-gradient">Produkte</span></h1>
+            <p className="text-xl text-muted-foreground max-w-2xl">Entdecken Sie unser professionelles Sortiment an Sicherheitskameras für maximale Zuverlässigkeit und Bildqualität.</p>
           </div>
 
           {/* Filters */}
@@ -35,7 +44,7 @@ export default function Products() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <input 
                 type="text" 
-                placeholder="Search products..."
+                placeholder="Produkte suchen..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 bg-card border border-white/10 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
@@ -65,18 +74,17 @@ export default function Products() {
             </div>
           ) : error ? (
             <div className="text-center py-20 text-destructive bg-destructive/10 rounded-2xl">
-              Failed to load products. Please try again later.
+              Produkte konnten nicht geladen werden. Bitte versuchen Sie es später erneut.
             </div>
           ) : filteredProducts?.length === 0 ? (
             <div className="text-center py-32 border border-white/5 rounded-2xl glass-panel">
-              <h3 className="text-xl font-bold mb-2">No products found</h3>
-              <p className="text-muted-foreground">Try adjusting your search or category filter.</p>
+              <h3 className="text-xl font-bold mb-2">Keine Produkte gefunden</h3>
+              <p className="text-muted-foreground">Passen Sie Ihre Suche oder den Kategoriefilter an.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProducts?.map((product) => (
                 <div key={product.id} className="group bg-card border border-white/5 rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-[0_10px_40px_-10px_rgba(0,182,212,0.2)] flex flex-col">
-                  {/* Fallback image logic if api imageUrl is broken/empty */}
                   <div className="aspect-[4/3] bg-muted relative overflow-hidden">
                     <img 
                       src={product.imageUrl || "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=800"} 
@@ -85,7 +93,7 @@ export default function Products() {
                     />
                     {!product.inStock && (
                       <div className="absolute top-4 left-4 bg-destructive text-destructive-foreground px-3 py-1 rounded-full text-xs font-bold">
-                        Out of Stock
+                        Ausverkauft
                       </div>
                     )}
                     <div className="absolute top-4 right-4 bg-background/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium border border-white/10">

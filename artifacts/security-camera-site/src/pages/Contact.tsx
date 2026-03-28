@@ -7,10 +7,10 @@ import { useSubmitContact } from "@workspace/api-client-react";
 import { useToast } from "@/hooks/use-toast";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "Name is required"),
-  email: z.string().email("Invalid email address"),
+  name: z.string().min(2, "Name ist erforderlich"),
+  email: z.string().email("Ungültige E-Mail-Adresse"),
   phone: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters")
+  message: z.string().min(10, "Nachricht muss mindestens 10 Zeichen enthalten")
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -25,16 +25,16 @@ export default function Contact() {
     mutation: {
       onSuccess: () => {
         toast({
-          title: "Message Sent!",
-          description: "We'll get back to you as soon as possible.",
+          title: "Nachricht gesendet!",
+          description: "Wir melden uns so schnell wie möglich bei Ihnen.",
         });
         reset();
       },
       onError: () => {
         toast({
           variant: "destructive",
-          title: "Error",
-          description: "Failed to send message. Please try again or call us directly.",
+          title: "Fehler",
+          description: "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an.",
         });
       }
     }
@@ -50,8 +50,8 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">Get in <span className="text-gradient">Touch</span></h1>
-            <p className="text-xl text-muted-foreground">Have questions about our products or need a custom installation quote? Our security experts are here to help.</p>
+            <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">Nehmen Sie <span className="text-gradient">Kontakt auf</span></h1>
+            <p className="text-xl text-muted-foreground">Haben Sie Fragen zu unseren Produkten oder benötigen Sie eine individuelle Installationsofferte? Unsere Sicherheitsexperten helfen Ihnen gerne weiter.</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8">
@@ -59,15 +59,15 @@ export default function Contact() {
             {/* Contact Info */}
             <div className="lg:col-span-2 space-y-8">
               <div className="glass-panel p-8 rounded-3xl">
-                <h3 className="text-2xl font-bold mb-8">Contact Information</h3>
+                <h3 className="text-2xl font-bold mb-8">Kontaktinformationen</h3>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
                       <MapPin className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">Our Office</h4>
-                      <p className="text-muted-foreground leading-relaxed">123 Security Blvd, Suite 100<br/>Tech District, NY 10001</p>
+                      <h4 className="font-semibold text-foreground mb-1">Unser Standort</h4>
+                      <p className="text-muted-foreground leading-relaxed">Wohlen AG &amp; Umgebung</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -75,8 +75,8 @@ export default function Contact() {
                       <Phone className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">Phone</h4>
-                      <p className="text-muted-foreground">+1 (555) 123-4567<br/>Toll-free: 1-800-SECURE-V</p>
+                      <h4 className="font-semibold text-foreground mb-1">Telefon</h4>
+                      <p className="text-muted-foreground">+41 76 227 46 57</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -84,7 +84,7 @@ export default function Contact() {
                       <Mail className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">Email</h4>
+                      <h4 className="font-semibold text-foreground mb-1">E-Mail</h4>
                       <p className="text-muted-foreground">sales@swisscamsecurity.com<br/>support@swisscamsecurity.com</p>
                     </div>
                   </div>
@@ -93,8 +93,8 @@ export default function Contact() {
                       <Clock className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">Business Hours</h4>
-                      <p className="text-muted-foreground">Mon-Fri: 8:00 AM - 6:00 PM<br/>24/7 Support for existing clients</p>
+                      <h4 className="font-semibold text-foreground mb-1">Öffnungszeiten</h4>
+                      <p className="text-muted-foreground">Mo–Fr: 08:00–18:00 Uhr<br/>24/7 Support für Bestandskunden</p>
                     </div>
                   </div>
                 </div>
@@ -106,46 +106,46 @@ export default function Contact() {
               <div className="bg-card border border-white/5 p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full" />
                 
-                <h3 className="text-2xl font-bold mb-8 relative z-10">Send us a Message</h3>
+                <h3 className="text-2xl font-bold mb-8 relative z-10">Nachricht senden</h3>
                 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 relative z-10">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-foreground">Full Name *</label>
+                      <label className="text-sm font-medium text-foreground">Vollständiger Name *</label>
                       <input 
                         {...register("name")}
                         className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
-                        placeholder="John Doe"
+                        placeholder="Max Mustermann"
                       />
                       {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-foreground">Phone Number</label>
+                      <label className="text-sm font-medium text-foreground">Telefonnummer</label>
                       <input 
                         {...register("phone")}
                         className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="+41 76 000 00 00"
                       />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">Email Address *</label>
+                    <label className="text-sm font-medium text-foreground">E-Mail-Adresse *</label>
                     <input 
                       {...register("email")}
                       className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
-                      placeholder="john@example.com"
+                      placeholder="max@beispiel.ch"
                     />
                     {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">Message *</label>
+                    <label className="text-sm font-medium text-foreground">Nachricht *</label>
                     <textarea 
                       {...register("message")}
                       rows={5}
                       className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors resize-none"
-                      placeholder="How can we help you?"
+                      placeholder="Wie können wir Ihnen helfen?"
                     />
                     {errors.message && <p className="text-xs text-destructive">{errors.message.message}</p>}
                   </div>
@@ -155,7 +155,7 @@ export default function Contact() {
                     disabled={isPending}
                     className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg flex items-center justify-center gap-2 glow-shadow-hover transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isPending ? <Loader2 className="w-6 h-6 animate-spin" /> : <><Send className="w-5 h-5" /> Send Message</>}
+                    {isPending ? <Loader2 className="w-6 h-6 animate-spin" /> : <><Send className="w-5 h-5" /> Nachricht senden</>}
                   </button>
                 </form>
               </div>

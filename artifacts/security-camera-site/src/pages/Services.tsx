@@ -1,50 +1,50 @@
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Link } from "wouter";
-import { Shield, Home, Building2, Wrench, Headphones, Check } from "lucide-react";
+import { Home, Building2, Wrench, Headphones, Check } from "lucide-react";
 
 const services = [
   {
     icon: Home,
-    title: "Residential Systems",
-    desc: "Complete smart home security setup including doorbell cameras, indoor monitoring, and perimeter defense."
+    title: "Privatsysteme",
+    desc: "Komplette Smart-Home-Sicherheitsinstallation mit Türklingelkameras, Innenraumüberwachung und Perimeterüberwachung."
   },
   {
     icon: Building2,
-    title: "Commercial & Enterprise",
-    desc: "Scalable access control, multi-site monitoring, and high-density camera deployments for businesses."
+    title: "Gewerbe & Unternehmen",
+    desc: "Skalierbares Zutrittskontrollsystem, Multi-Standort-Überwachung und kameragestützte Hochdichte-Absicherung für Betriebe."
   },
   {
     icon: Headphones,
-    title: "24/7 Cloud Monitoring",
-    desc: "Secure cloud storage with AI-powered alert management and professional monitoring team dispatch."
+    title: "24/7 Cloud-Überwachung",
+    desc: "Sicherer Cloud-Speicher mit KI-gestütztem Alarmsystem und professionellem Überwachungsteam auf Abruf."
   },
   {
     icon: Wrench,
-    title: "Maintenance & Support",
-    desc: "Regular system health checks, firmware updates, and rapid-response repair services."
+    title: "Wartung & Support",
+    desc: "Regelmässige Systemprüfungen, Firmware-Updates und schnelle Reparaturdienste vor Ort."
   }
 ];
 
 const tiers = [
   {
-    name: "Basic Home",
-    price: "$299",
-    desc: "Perfect for apartments and small homes.",
-    features: ["2 Outdoor Cameras", "1 Video Doorbell", "Mobile App Access", "1 Week Cloud Storage", "Standard Installation"],
+    name: "Basis Zuhause",
+    price: "CHF 299",
+    desc: "Ideal für Wohnungen und kleinere Häuser.",
+    features: ["2 Aussenkameras", "1 Video-Türklingel", "Mobile App Zugriff", "1 Woche Cloud-Speicher", "Standardinstallation"],
     popular: false
   },
   {
-    name: "Pro Business",
-    price: "$899",
-    desc: "Ideal for retail stores and offices.",
-    features: ["8 4K Ultra HD Cameras", "NVR with 2TB Storage", "AI Motion Detection", "1 Month Cloud Backup", "Priority Support", "Professional Installation"],
+    name: "Pro Gewerbe",
+    price: "CHF 899",
+    desc: "Optimal für Ladengeschäfte und Büros.",
+    features: ["8 x 4K Ultra HD Kameras", "NVR mit 2TB Speicher", "KI-Bewegungserkennung", "1 Monat Cloud-Backup", "Prioritäts-Support", "Professionelle Installation"],
     popular: true
   },
   {
     name: "Enterprise",
-    price: "Custom",
-    desc: "For large facilities and multi-site.",
-    features: ["Unlimited Scalability", "PTZ & License Plate Cameras", "Access Control Integration", "24/7 Professional Monitoring", "Dedicated Account Manager"],
+    price: "Auf Anfrage",
+    desc: "Für grosse Anlagen und mehrere Standorte.",
+    features: ["Unbegrenzte Skalierbarkeit", "PTZ & Kennzeichenkameras", "Zutrittskontrollintegration", "24/7 Profi-Überwachung", "Dedizierter Ansprechpartner"],
     popular: false
   }
 ];
@@ -58,14 +58,14 @@ export default function Services() {
           <div className="absolute inset-0 z-0">
             <img 
               src={`${import.meta.env.BASE_URL}images/services-bg.png`} 
-              alt="Services Background" 
+              alt="Dienstleistungen Hintergrund" 
               className="w-full h-full object-cover opacity-30"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">Our <span className="text-gradient">Services</span></h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">End-to-end security solutions from planning and installation to 24/7 monitoring and maintenance.</p>
+            <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">Unsere <span className="text-gradient">Dienstleistungen</span></h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Komplettlösungen für Sicherheit – von der Planung über die Installation bis zur 24/7-Überwachung und Wartung.</p>
           </div>
         </div>
 
@@ -88,8 +88,8 @@ export default function Services() {
 
           {/* Pricing Tiers */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Installation Packages</h2>
-            <p className="text-xl text-muted-foreground">Transparent pricing for standard setups. Contact us for custom quotes.</p>
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Installationspakete</h2>
+            <p className="text-xl text-muted-foreground">Transparente Preise für Standardinstallationen. Kontaktieren Sie uns für individuelle Offerten.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -100,7 +100,7 @@ export default function Services() {
               >
                 {tier.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-bold tracking-wide uppercase">
-                    Most Popular
+                    Beliebteste Wahl
                   </div>
                 )}
                 <div className="mb-8">
@@ -109,7 +109,7 @@ export default function Services() {
                 </div>
                 <div className="mb-8">
                   <span className="text-5xl font-display font-bold">{tier.price}</span>
-                  {tier.price !== "Custom" && <span className="text-muted-foreground"> /starting</span>}
+                  {tier.price !== "Auf Anfrage" && <span className="text-muted-foreground"> /ab</span>}
                 </div>
                 <ul className="space-y-4 mb-8 flex-1">
                   {tier.features.map((f, fi) => (
@@ -127,7 +127,7 @@ export default function Services() {
                       : 'bg-white/5 hover:bg-white/10 text-foreground'
                   }`}
                 >
-                  Request Quote
+                  Offerte anfordern
                 </Link>
               </div>
             ))}

@@ -4,22 +4,35 @@ import { useListBlogPosts } from "@/hooks/useBlogApi";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Loader2, ArrowRight, Calendar, User } from "lucide-react";
 import { format } from "date-fns";
+import { de } from "date-fns/locale";
 
 export default function Blog() {
   const { data: posts, isLoading, error } = useListBlogPosts();
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState("Alle");
 
-  const categories = ["All", "Installation Tips", "Security News", "Product Updates", "How-To Guides"];
+  const categoryMap: Record<string, string> = {
+    "Alle": "All",
+    "Installationstipps": "Installation Tips",
+    "Sicherheitsnews": "Security News",
+    "Produktneuheiten": "Product Updates",
+    "Anleitungen": "How-To Guides",
+  };
 
-  const filteredPosts = posts?.filter(p => p.published && (category === "All" || p.category === category));
+  const categories = Object.keys(categoryMap);
+
+  const filteredPosts = posts?.filter(p => {
+    if (!p.published) return false;
+    if (category === "Alle") return true;
+    return p.category === categoryMap[category];
+  });
 
   return (
     <PageTransition>
       <div className="pt-32 pb-24 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Security <span className="text-gradient">Insights & News</span></h1>
-            <p className="text-xl text-muted-foreground max-w-2xl">Expert advice, industry news, and guides to help you secure what matters most.</p>
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Sicherheits-<span className="text-gradient">Ratgeber & News</span></h1>
+            <p className="text-xl text-muted-foreground max-w-2xl">Expertentipps, Branchennews und Anleitungen, damit Sie das Wichtigste bestmöglich schützen können.</p>
           </div>
 
           <div className="flex gap-2 overflow-x-auto pb-6 mb-8 hide-scrollbar">
@@ -44,12 +57,12 @@ export default function Blog() {
             </div>
           ) : error ? (
             <div className="text-center py-20 text-destructive bg-destructive/10 rounded-2xl">
-              Failed to load articles.
+              Artikel konnten nicht geladen werden.
             </div>
           ) : filteredPosts?.length === 0 ? (
             <div className="text-center py-32 border border-white/5 rounded-2xl glass-panel">
-              <h3 className="text-xl font-bold mb-2">No articles found</h3>
-              <p className="text-muted-foreground">Check back later for new content.</p>
+              <h3 className="text-xl font-bold mb-2">Keine Artikel gefunden</h3>
+              <p className="text-muted-foreground">Schauen Sie später wieder vorbei.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -67,13 +80,13 @@ export default function Blog() {
                   </div>
                   <div className="p-6 md:p-8 flex flex-col flex-1">
                     <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
-                      <div className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" /> {format(new Date(post.createdAt), 'MMM d, yyyy')}</div>
+                      <div className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" /> {format(new Date(post.createdAt), 'd. MMM yyyy', { locale: de })}</div>
                       <div className="flex items-center gap-1.5"><User className="w-3.5 h-3.5" /> {post.author}</div>
                     </div>
                     <h2 className="text-xl font-display font-bold mb-3 group-hover:text-primary transition-colors leading-snug">{post.title}</h2>
                     <p className="text-muted-foreground text-sm line-clamp-3 mb-6 flex-1">{post.excerpt}</p>
                     <div className="flex items-center text-primary font-medium text-sm mt-auto group-hover:translate-x-1 transition-transform">
-                      Read Article <ArrowRight className="w-4 h-4 ml-1" />
+                      Artikel lesen <ArrowRight className="w-4 h-4 ml-1" />
                     </div>
                   </div>
                 </Link>

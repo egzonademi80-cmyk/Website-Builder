@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ShieldCheck } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/products", label: "Products" },
-  { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Startseite" },
+  { href: "/products", label: "Produkte" },
+  { href: "/services", label: "Dienstleistungen" },
+  { href: "/contact", label: "Kontakt" },
 ];
 
 export function Navbar() {
@@ -34,9 +34,11 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-primary/20 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-              <ShieldCheck className="w-6 h-6" />
-            </div>
+            <img
+              src={`${import.meta.env.BASE_URL}logo.jpeg`}
+              alt="SwissCam Security Logo"
+              className="w-10 h-10 rounded-xl object-cover"
+            />
             <span className="font-display font-bold text-xl tracking-tight text-foreground">
               SwissCam<span className="text-primary"> Security</span>
             </span>
@@ -66,7 +68,7 @@ export function Navbar() {
               href="/contact"
               className="px-5 py-2.5 text-sm font-semibold rounded-full bg-primary text-primary-foreground shadow-[0_0_15px_rgba(0,182,212,0.3)] hover:shadow-[0_0_25px_rgba(0,182,212,0.5)] hover:-translate-y-0.5 transition-all duration-300"
             >
-              Get a Quote
+              Offerte anfordern
             </Link>
           </nav>
 
@@ -108,7 +110,7 @@ export function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="mt-4 px-5 py-3 text-center text-base font-semibold rounded-xl bg-primary text-primary-foreground"
               >
-                Get a Quote
+                Offerte anfordern
               </Link>
             </div>
           </motion.div>
