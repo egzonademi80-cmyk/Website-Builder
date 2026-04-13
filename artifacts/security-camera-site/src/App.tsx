@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 // Layout Components
 import { Navbar } from "./components/layout/Navbar";
@@ -93,6 +94,7 @@ function App() {
           <Router />
         </WouterRouter>
         <Toaster />
+        <Analytics />
       </TooltipProvider>
     </QueryClientProvider>
   );
